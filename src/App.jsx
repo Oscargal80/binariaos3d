@@ -23,13 +23,10 @@ function App() {
       });
     }, 3000);
 
-    // Reproducir sonido de fondo con volumen bajo
+    // Inicializar sonido de fondo con volumen bajo
     fondoAudioRef.current = new Audio(soundFondo);
     fondoAudioRef.current.volume = 0.1; // Ajusta el volumen aquí
     fondoAudioRef.current.loop = true; // Hace que el audio se repita
-    fondoAudioRef.current.play().catch(error => {
-      console.log('Error al reproducir sonido de fondo:', error);
-    });
 
     return () => {
       // Limpiar los audios al desmontar el componente
@@ -43,7 +40,9 @@ function App() {
 
   const toggleFondoAudio = () => {
     if (fondoAudioRef.current.paused) {
-      fondoAudioRef.current.play();
+      fondoAudioRef.current.play().catch(error => {
+        console.log('Error al reproducir sonido de fondo:', error);
+      });
     } else {
       fondoAudioRef.current.pause();
     }
