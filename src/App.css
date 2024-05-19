@@ -1,5 +1,3 @@
-/* App.css */
-
 /* Estilos generales y existentes */
 @import '@fontsource/jetbrains-mono/index.css';
 
@@ -9,6 +7,7 @@ body, html {
   width: 100%;
   height: 100vh;
   font-family: 'JetBrains Mono', monospace;
+  color: black; /* Asegura que el texto sea negro en todos los dispositivos */
   position: relative; /* Necesario para posicionar el pseudo-elemento */
   overflow: hidden; /* Ocultar scroll */
   cursor: url('/src/assets/pointer.png'), auto; /* Utiliza la imagen pointer.png como cursor */
@@ -180,6 +179,11 @@ body::before {
     font-size: 0.8rem; /* Ajusta el tamaño de fuente del footer para pantallas pequeñas */
     padding: 0.5em 0; /* Reduce el padding del footer en pantallas pequeñas */
   }
+
+  body::before {
+    opacity: 0.5; /* Aumenta la opacidad para hacer el fondo más claro */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con más transparencia */
+  }
 }
 
 p {
@@ -297,20 +301,4 @@ canvas {
 .loader.fade-out {
   opacity: 0;
   visibility: hidden;
-}
-/* Estilos para pantallas pequeñas */
-@media (max-width: 600px) {
-  body, html {
-    font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-  }
-
-  .footer {
-    font-size: 0.8rem; /* Ajusta el tamaño de fuente del footer para pantallas pequeñas */
-    padding: 0.5em 0; /* Reduce el padding del footer en pantallas pequeñas */
-  }
-
-  body::before {
-    opacity: 0.2; /* Opacidad más clara para pantallas pequeñas */
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con más transparencia */
-  }
 }
