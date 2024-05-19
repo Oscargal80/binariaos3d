@@ -123,11 +123,3 @@ footer {
   padding: 0.5em 0;
   background-color: #d5d4d4;
 }
-
-/* Ajustes específicos para pantallas de iPhone */
-@media (max-width: 812px) and (orientation: portrait), 
-       (max-width: 896px) and (orientation: landscape) {
-  body, html, #root {
-    height: -webkit-fill-available; /* Ajuste para pantallas de iPhone */
-  }
-}
