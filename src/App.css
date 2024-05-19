@@ -299,3 +299,19 @@ canvas {
   opacity: 0;
   visibility: hidden;
 }
+/* Estilos para pantallas pequeñas */
+@media (max-width: 600px) {
+  body, html {
+    font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+  }
+
+  .footer {
+    font-size: 0.8rem; /* Ajusta el tamaño de fuente del footer para pantallas pequeñas */
+    padding: 0.5em 0; /* Reduce el padding del footer en pantallas pequeñas */
+  }
+
+  body::before {
+    opacity: 0.2; /* Opacidad más clara para pantallas pequeñas */
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con más transparencia */
+  }
+}
