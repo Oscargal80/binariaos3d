@@ -52,8 +52,8 @@ const FaceDetail = () => {
             <p>
               Aquí puedes ver información sobre la IP y la localización:
             </p>
-            <div style={{ textAlign: 'right', fontSize: '10px', background: 'rgba(255, 255, 255, 0.1)', fontFamily: "'JetBrains Mono', monospace" }}>
-              ------DATA------<br />
+            <div className="ip-info">
+              ------DATASNAP------<br />
               IP: {ipInfo.ip}<br />
               GPS: {ipInfo.location}<br />
               {ipInfo.organization}<br />
