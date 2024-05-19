@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer style={styles.footer}>
-      <p style={styles.text}>© 2024 BinariaOS.</p>
+      <p style={styles.text}>© 2024 BinariaOS</p>
     </footer>
   );
 };
