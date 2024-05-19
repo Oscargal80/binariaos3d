@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Edges, Text } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
 import { useNavigate } from 'react-router-dom';
+import { Physics, useBox } from '@react-three/cannon';
 import '@fontsource/jetbrains-mono';
 import Footer from './Footer';
 
@@ -26,16 +27,8 @@ const Face = ({ position, rotation, onClick, animate, text, transparent }) => {
   return (
     <a.mesh position={pos} rotation={rot} scale={scale} onClick={onClick}>
       <planeGeometry args={[2, 2]} />
-      <a.meshPhysicalMaterial
-        color="black"
-        roughness={0.1}
-        metalness={0.9}
-        reflectivity={1}
-        clearcoat={1}
-        clearcoatRoughness={0}
-        transmission={1}
-        thickness={0.5}
-        envMapIntensity={1}
+      <a.meshBasicMaterial
+        color="white"
         opacity={opacity}
         transparent={true}
       />
@@ -43,7 +36,7 @@ const Face = ({ position, rotation, onClick, animate, text, transparent }) => {
       <Text
         position={[0, 0, 0.1]}
         fontSize={0.3}
-        color="white"
+        color="black"
         font="/jetbrains-mono.woff"
         anchorX="center"
         anchorY="middle"
@@ -98,8 +91,8 @@ function RotatingCube() {
 
   useFrame(() => {
     if (!isAnimating) {
-      mesh.current.rotation.x += 0.01;
-      mesh.current.rotation.y += 0.01;
+      mesh.current.rotation.x += 0.005;
+      mesh.current.rotation.y += 0.005;
     }
   });
 
@@ -113,7 +106,7 @@ function RotatingCube() {
   ];
 
   return (
-    <group ref={mesh} scale={[1.0, 1.0, 1.0]}>
+    <group ref={mesh} scale={[1.1, 1.1, 1.1]}>
       {faces.map((face, index) => (
         <Face
           key={index}
@@ -125,10 +118,6 @@ function RotatingCube() {
           transparent={transparent}
         />
       ))}
-      <mesh>
-        <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial color="white" emissive="black" emissiveIntensity={1} />
-      </mesh>
     </group>
   );
 }
@@ -145,7 +134,9 @@ export default function Cube() {
           <pointLight position={[0, 5, 0]} intensity={2} color="white" />
           <spotLight position={[15, 20, 5]} angle={0.3} intensity={2} castShadow />
           <spotLight position={[-15, -20, -5]} angle={0.3} intensity={2} castShadow color="white" />
-          <RotatingCube />
+          <Physics>
+            <RotatingCube />
+          </Physics>
         </Canvas>
       </div>
       <Footer />
