@@ -128,13 +128,72 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: black; /* Asegura que el texto en el pie de página sea negro */
+  color: #333; /* Cambia el color del texto a oscuro */
   text-align: center;
-  padding: 0.5em 0;
+  padding: 1.5em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: transparent; /* Elimina el fondo del footer */
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 0.8em;
 }
 
 @media (max-width: 600px) {
   body, html {
     font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
   }
+}
+
+p {
+  margin: 20px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+.content-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0;
+  line-height: 1.2;
+}
+
+.section {
+  margin: 20px 0;
+}
+
+.section p {
+  margin: 10px 0;
+}
+
+.section a {
+  display: inline-block;
+  margin-top: 10px;
 }
