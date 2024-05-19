@@ -8,7 +8,7 @@ body, html {
   overflow: hidden;
   background-color: #d5d4d4;
   font-family: 'JetBrains Mono', monospace;
-  color: black;
+  color: black; /* Asegura que el texto sea negro en todos los dispositivos */
 }
 
 #root {
@@ -90,6 +90,7 @@ body, html {
 
 .card {
   padding: 2em;
+  color: black; /* Asegura que el texto dentro de las tarjetas sea negro */
 }
 
 .read-the-docs {
@@ -127,7 +128,13 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: black;
+  color: black; /* Asegura que el texto en el pie de página sea negro */
   text-align: center;
   padding: 0.5em 0;
+}
+
+@media (max-width: 600px) {
+  body, html {
+    font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+  }
 }
