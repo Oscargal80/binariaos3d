@@ -6,27 +6,30 @@ import { useNavigate } from 'react-router-dom';
 import '@fontsource/jetbrains-mono';
 import Footer from './Footer';
 
-const Face = ({ position, rotation, onClick, animate, text }) => {
-  const { pos, scale, rot } = useSpring({
+const Face = ({ position, rotation, onClick, animate, text, transparent }) => {
+  const { pos, scale, rot, opacity } = useSpring({
     pos: animate ? [0, 0, 1.5] : position,
     scale: animate ? [5, 5, 5] : [1, 1, 1],
     rot: animate ? [0, 0, 0] : rotation,
+    opacity: transparent ? 0 : 1,
     config: { duration: 2000, tension: 30, friction: 40 },
   });
 
   return (
     <a.mesh position={pos} rotation={rot} scale={scale} onClick={onClick}>
       <planeGeometry args={[2, 2]} />
-      <meshPhysicalMaterial
+      <a.meshPhysicalMaterial
         color="black"
         roughness={0.1}
         metalness={0.9}
         reflectivity={1}
         clearcoat={1}
         clearcoatRoughness={0}
-        transmission={1} // Adding transparency
-        thickness={0.5} // Adjust thickness to give a glass-like feel
-        envMapIntensity={1} // Enhance reflections
+        transmission={1}
+        thickness={0.5}
+        envMapIntensity={1}
+        opacity={opacity}
+        transparent={true}
       />
       <Edges color="black" />
       <Text
@@ -47,6 +50,7 @@ function RotatingCube() {
   const mesh = useRef();
   const [animate, setAnimate] = useState(Array(6).fill(false));
   const [isAnimating, setIsAnimating] = useState(false);
+  const [transparent, setTransparent] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = (index) => {
@@ -60,6 +64,15 @@ function RotatingCube() {
       setIsAnimating(false);
     }, 2000);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTransparent(true);
+      setTimeout(() => setTransparent(false), 3000);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useFrame(() => {
     if (!isAnimating) {
@@ -87,8 +100,13 @@ function RotatingCube() {
           onClick={() => handleClick(index)}
           animate={animate[index]}
           text={face.text}
+          transparent={transparent}
         />
       ))}
+      <mesh>
+        <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial color="red" emissive="red" emissiveIntensity={1.5} />
+      </mesh>
     </group>
   );
 }
