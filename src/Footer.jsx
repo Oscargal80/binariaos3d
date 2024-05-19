@@ -5,7 +5,7 @@ const Footer = ({ toggleFondoAudio }) => {
   return (
     <footer className="footer">
       <p className="footer-text">© 2024 BinariaOS</p>
-      <button onClick={toggleFondoAudio} className="audio-toggle-button">Audio On/Off</button>
+      <button onClick={toggleFondoAudio} className="audio-toggle-button">🎵 On/Off</button>
     </footer>
   );
 };
