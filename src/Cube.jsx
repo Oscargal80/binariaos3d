@@ -32,7 +32,7 @@ const Face = ({ position, rotation, onClick, animate, text }) => {
         position={[0, 0, 0.1]}
         fontSize={0.2} // Ajuste del tamaño del texto
         color="white"
-        font="/node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-100-normal.woff" // Especifica la ruta a la fuente JetBrains Mono
+        font="/jetbrains-mono-latin.woff" // Especifica la ruta a la fuente JetBrains Mono
         anchorX="center"
         anchorY="middle"
       >
