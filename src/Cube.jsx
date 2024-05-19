@@ -5,7 +5,6 @@ import { useSpring, a } from '@react-spring/three';
 import { useNavigate } from 'react-router-dom';
 import { Physics, useBox } from '@react-three/cannon';
 import '@fontsource/jetbrains-mono';
-import Footer from './Footer';
 
 // Importar los sonidos
 import soundAcerca from '../public/audio/acerca.mp3';
@@ -124,22 +123,19 @@ function RotatingCube() {
 
 export default function Cube() {
   return (
-    <>
-      <div className="canvas-container">
-        <Canvas>
-          <ambientLight intensity={0.7} color="white" />
-          <directionalLight position={[5, 5, 5]} intensity={1.5} color="white" />
-          <pointLight position={[10, 10, 10]} intensity={2} distance={30} decay={2} color="white" />
-          <pointLight position={[-10, -10, -10]} intensity={2} distance={30} decay={2} color="white" />
-          <pointLight position={[0, 5, 0]} intensity={2} color="white" />
-          <spotLight position={[15, 20, 5]} angle={0.3} intensity={2} castShadow />
-          <spotLight position={[-15, -20, -5]} angle={0.3} intensity={2} castShadow color="white" />
-          <Physics>
-            <RotatingCube />
-          </Physics>
-        </Canvas>
-      </div>
-      <Footer />
-    </>
+    <div className="canvas-container">
+      <Canvas>
+        <ambientLight intensity={0.7} color="white" />
+        <directionalLight position={[5, 5, 5]} intensity={1.5} color="white" />
+        <pointLight position={[10, 10, 10]} intensity={2} distance={30} decay={2} color="white" />
+        <pointLight position={[-10, -10, -10]} intensity={2} distance={30} decay={2} color="white" />
+        <pointLight position={[0, 5, 0]} intensity={2} color="white" />
+        <spotLight position={[15, 20, 5]} angle={0.3} intensity={2} castShadow />
+        <spotLight position={[-15, -20, -5]} angle={0.3} intensity={2} castShadow color="white" />
+        <Physics>
+          <RotatingCube />
+        </Physics>
+      </Canvas>
+    </div>
   );
 }

@@ -57,17 +57,20 @@ function App() {
     <Router>
       <div className="app-container">
         <header className="header">
-          <Link to="/" onClick={playWelcomeAudio}>
-            <img src={binariaLogo} alt="BinariaOS" className="binaria-logo" /> {/* Aplicar la clase CSS */}
+          <Link to="/" onClick={playWelcomeAudio} className="logo-container">
+            <img src={binariaLogo} alt="BinariaOS" className="binaria-logo" />
+            <h2 className="subtitle">Arte y Diseño</h2>
           </Link>
         </header>
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Cube />} />
-            <Route path="/face/:text" element={<FaceDetail />} />
-          </Routes>
+          <div className="cube-wrapper">
+            <Routes>
+              <Route path="/" element={<Cube />} />
+              <Route path="/face/:text" element={<FaceDetail />} />
+            </Routes>
+          </div>
         </main>
-        <Footer toggleFondoAudio={toggleFondoAudio} /> {/* Pasar la función al Footer */}
+        <Footer toggleFondoAudio={toggleFondoAudio} />
       </div>
     </Router>
   );

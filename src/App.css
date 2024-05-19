@@ -9,6 +9,7 @@ body, html {
   font-family: 'JetBrains Mono', monospace;
   color: black; /* Asegura que el texto sea negro en todos los dispositivos */
   position: relative; /* Necesario para posicionar el pseudo-elemento */
+  overflow: hidden; /* Ocultar scroll */
 }
 
 body::before {
@@ -52,6 +53,12 @@ body::before {
   max-width: 350px;
   height: auto;
   padding-top: 15px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 10px;
 }
 
 @media (max-width: 600px) {
@@ -244,8 +251,16 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 60px); /* Ajusta la altura para dejar espacio al footer */
+  height: calc(100vh - 200px); /* Ajusta la altura para dejar espacio al logo y al footer */
   position: relative;
+}
+
+.cube-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 canvas {
