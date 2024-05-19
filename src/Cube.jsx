@@ -44,9 +44,6 @@ function RotatingCube() {
   const mesh = useRef();
   const [animate, setAnimate] = useState(Array(6).fill(false));
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [clickStart, setClickStart] = useState(null);
-  const startPos = useRef({ x: 0, y: 0 });
   const navigate = useNavigate();
 
   const handleClick = (index) => {
@@ -61,48 +58,8 @@ function RotatingCube() {
     }, 2000);
   };
 
-  const handlePointerDown = (event) => {
-    setClickStart(Date.now());
-    startPos.current = { x: event.clientX, y: event.clientY };
-  };
-
-  const handlePointerUp = (event) => {
-    const deltaX = event.clientX - startPos.current.x;
-    const deltaY = event.clientY - startPos.current.y;
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    if (Date.now() - clickStart < 200 && distance < 5) {
-      const faceIndex = faces.findIndex(face => face.position[0] === startPos.current.x && face.position[1] === startPos.current.y);
-      if (faceIndex !== -1) handleClick(faceIndex);
-    }
-
-    setIsDragging(false);
-  };
-
-  const handlePointerMove = (event) => {
-    const deltaX = event.clientX - startPos.current.x;
-    const deltaY = event.clientY - startPos.current.y;
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    if (distance > 5) {
-      setIsDragging(true);
-      mesh.current.rotation.y += deltaX * 0.001;
-      mesh.current.rotation.x += deltaY * 0.001;
-      startPos.current = { x: event.clientX, y: event.clientY };
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('pointerup', handlePointerUp);
-    window.addEventListener('pointermove', handlePointerMove);
-    return () => {
-      window.removeEventListener('pointerup', handlePointerUp);
-      window.removeEventListener('pointermove', handlePointerMove);
-    };
-  }, []);
-
   useFrame(() => {
-    if (!isAnimating && !isDragging) {
+    if (!isAnimating) {
       mesh.current.rotation.x += 0.01;
       mesh.current.rotation.y += 0.01;
     }
