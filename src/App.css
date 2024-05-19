@@ -1,6 +1,6 @@
 @import '@fontsource/jetbrains-mono/index.css';
 
-body, html, #root {
+body, html {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -17,7 +17,20 @@ body, html, #root {
   padding: 1rem;
   text-align: center;
   position: relative;
-  overflow-y: scroll; /* Agregado para permitir el desplazamiento vertical */
+  height: 100%;
+  overflow: hidden; /* Ocultar barra de desplazamiento */
+}
+
+.scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll; /* Permitir desplazamiento vertical */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Ocultar barra de desplazamiento en WebKit (Chrome, Safari) */
 }
 
 .binaria-logo {
@@ -81,11 +94,6 @@ body, html, #root {
 
 .read-the-docs {
   color: #888;
-}
-
-.canvas-container {
-  width: 100%;
-  height: calc(100vh - 150px); /* Ajuste para dejar más espacio para el footer */
 }
 
 .fade-in {
