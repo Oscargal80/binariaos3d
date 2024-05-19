@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 
 const FaceDetail = () => {
   const { text } = useParams();
   const navigate = useNavigate();
   const [fadeOut, setFadeOut] = useState(false);
+  const [ipInfo, setIpInfo] = useState({ ip: '', location: '', organization: '' });
 
   useEffect(() => {
+    if (text === 'Proyectos') {
+      axios.get('/api/ipinfo')
+        .then(response => {
+          setIpInfo(response.data);
+        })
+        .catch(error => console.error('Error fetching IP details:', error));
+    }
+
     const timer = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => navigate('/'), 1000);
@@ -26,7 +36,7 @@ const FaceDetail = () => {
       clearTimeout(timer);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [navigate]);
+  }, [navigate, text]);
 
   const renderContent = () => {
     switch (text) {
@@ -36,11 +46,20 @@ const FaceDetail = () => {
             Nos dedicamos al desarrollo de sitios web minimalistas y elegantes, sencillos pero robustos y totalmente adaptables a cualquier formato, con campos y tablas dinámicas. Nuestro compromiso es crecer con usted y su emprendimiento. Para saber más, comuníquese a <a href="mailto:info@binariaos.com.py">info@binariaos.com.py</a>.
           </p>
         );
-      case 'BinOS':
+      case 'Proyectos':
         return (
-          <p>
-            BinOS es nuestra solución innovadora para la gestión empresarial, diseñada para optimizar los procesos y mejorar la eficiencia. Integra funcionalidades avanzadas que permiten un control completo y preciso de las operaciones diarias.
-          </p>
+          <div>
+            <p>
+              Aquí puedes ver información sobre la IP y la localización:
+            </p>
+            <div style={{ textAlign: 'right', fontSize: '10px', background: 'rgba(255, 255, 255, 0.1)', fontFamily: "'JetBrains Mono', monospace" }}>
+              ------DATA------<br />
+              IP: {ipInfo.ip}<br />
+              GPS: {ipInfo.location}<br />
+              {ipInfo.organization}<br />
+              BinariaOS@2024
+            </div>
+          </div>
         );
       case 'Trabajos':
         return (
@@ -54,6 +73,12 @@ const FaceDetail = () => {
             <p>Además, puedes visitar nuestros proyectos en GitHub: <a href="https://github.com/Oscargal80">Oscargal80</a> y un interesante proyecto de terminal en <a href="https://ai.binariaos.com.py/">AI BinariaOS</a>.</p>
           </div>
         );
+      case 'e-Comm':
+        return (
+          <p>
+            Descubre nuestra solución de comercio electrónico con características avanzadas y personalizables. <a href="https://shop.binariaos.com.py">Visite nuestro sitio de ejemplo e-commerce</a> para ver nuestras capacidades en acción.
+          </p>
+        );
       case 'Clientes':
         return (
           <div>
@@ -65,12 +90,6 @@ const FaceDetail = () => {
             </ul>
             <p>Estamos aquí para crecer juntos y adelantarnos al futuro.</p>
           </div>
-        );
-      case 'e-Comm':
-        return (
-          <p>
-            Descubre nuestra solución de comercio electrónico con características avanzadas y personalizables. <a href="https://shop.binariaos.com.py">Visite nuestro sitio de ejemplo e-commerce</a> para ver nuestras capacidades en acción.
-          </p>
         );
       case 'Contactos':
         return (
