@@ -10,13 +10,13 @@ const FaceDetail = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setFadeOut(true);
-      setTimeout(() => navigate('/'), 1000); // Espera el tiempo de la animación fade-out antes de navegar
-    }, 9000); // Inicia fade-out después de 9 segundos
+      setTimeout(() => navigate('/'), 1000);
+    }, 9000);
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setFadeOut(true);
-        setTimeout(() => navigate('/'), 1000); // Espera el tiempo de la animación fade-out antes de navegar
+        setTimeout(() => navigate('/'), 1000);
       }
     };
 
@@ -82,7 +82,7 @@ const FaceDetail = () => {
       default:
         return <p>Contenido no encontrado.</p>;
     }
-  };  
+  };
 
   return (
     <div className={fadeOut ? 'fade-out' : 'fade-in'}>
