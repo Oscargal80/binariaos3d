@@ -17,7 +17,7 @@ const styles = {
     color: 'black',
     textAlign: 'center',
     padding: '0.5em 0',
-    backgroundColor: '#d5d4d4', // Fondo para el footer
+    // backgroundColor: '#d5d4d4', // Eliminado el fondo del footer
   },
   text: {
     margin: 0,
