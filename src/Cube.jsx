@@ -145,7 +145,7 @@ function RotatingCube() {
   ];
 
   return (
-    <group ref={mesh} scale={[1.4, 1.4, 1.4]}>
+    <group ref={mesh} scale={[1.2, 1.2, 1.2]}>
       {faces.map((face, index) => (
         <Face
           key={index}
