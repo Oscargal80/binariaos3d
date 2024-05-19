@@ -1,0 +1,127 @@
+@import '@fontsource/jetbrains-mono/index.css';
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; /* Opcional: para evitar scrollbars */
+  background-color: #d5d4d4; /* Fondo gris claro */
+  font-family: 'JetBrains Mono', monospace;
+  color: black; /* Asegurar que el texto sea visible */
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  position: relative; /* Para permitir posicionamiento del footer */
+}
+
+/* Logo binario */
+.binaria-logo {
+  width: 100%; /* Ajuste automático al ancho del contenedor */
+  max-width: 350px; /* Ancho máximo */
+  height: auto; /* Altura automática */
+  padding-top: 15px;
+}
+
+/* Estilo adaptable a diferentes tamaños de pantalla */
+@media (max-width: 600px) {
+  .binaria-logo {
+    max-width: 200px; /* Ancho máximo reducido para pantallas pequeñas */
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  .binaria-logo {
+    max-width: 300px; /* Ancho máximo para pantallas medianas */
+  }
+}
+
+@media (min-width: 1201px) {
+  .binaria-logo {
+    max-width: 350px; /* Ancho máximo para pantallas grandes */
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.canvas-container {
+  width: 100%;
+  height: calc(100vh - 100px); /* Ajuste para dejar espacio para el footer */
+}
+
+.fade-in {
+  animation: fadeIn 1.5s forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+footer {
+  height: 60px; /* Altura del footer */
+  position: absolute; /* Para asegurar que el footer esté en la parte inferior */
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding: 0.5em 0;
+  background-color: #d5d4d4; /* Fondo para el footer */
+}
