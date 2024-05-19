@@ -1,3 +1,5 @@
+/* App.css */
+
 /* Estilos generales y existentes */
 @import '@fontsource/jetbrains-mono/index.css';
 
@@ -10,6 +12,7 @@ body, html {
   color: black; /* Asegura que el texto sea negro en todos los dispositivos */
   position: relative; /* Necesario para posicionar el pseudo-elemento */
   overflow: hidden; /* Ocultar scroll */
+  cursor: url('/src/assets/pointer.png'), auto; /* Utiliza la imagen pointer.png como cursor */
 }
 
 body::before {
