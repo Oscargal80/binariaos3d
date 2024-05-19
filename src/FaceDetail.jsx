@@ -31,7 +31,11 @@ const FaceDetail = () => {
   const renderContent = () => {
     switch (text) {
       case 'Acerca':
-        return <p>Nos dedicamos al desarrollo de sitios web minimalistas y elegantes, sencillos pero robustos y totalmente adaptables a cualquier formato, con campos y tablas dinámicas. Nuestro compromiso es crecer con usted y su emprendimiento. Para saber más, comuníquese a info@binariaos.com.py</p>;
+        return (
+          <p>
+            Nos dedicamos al desarrollo de sitios web minimalistas y elegantes, sencillos pero robustos y totalmente adaptables a cualquier formato, con campos y tablas dinámicas. Nuestro compromiso es crecer con usted y su emprendimiento. Para saber más, comuníquese a <a href="mailto:info@binariaos.com.py">info@binariaos.com.py</a>
+          </p>
+        );
       case 'BinOS':
         return <p>Detalles sobre BinOS...</p>;
       case 'Trabajos':
@@ -39,13 +43,17 @@ const FaceDetail = () => {
       case 'Clientes':
         return <p>binariaOS está comprometida con el éxito. Estamos para crecer juntos y adelantar el futuro.</p>;
       case 'e-Comm':
-        return <p>Detalles sobre e-Comm...</p>;
+        return (
+          <p>
+          e-Comm... <a href="https://shop.binariaos.com.py">Visite nuestro sitio de ejemplo e-commerce</a>
+          </p>
+        );
       case 'Contactos':
-        return <p>Números de contacto y enlaces...</p>;
+        return <p><a href="mailto:info@binariaos.com.py">info@binariaos.com.py</a></p>;
       default:
         return <p>Contenido no encontrado.</p>;
     }
-  };
+  };  
 
   return (
     <div className={fadeOut ? 'fade-out' : 'fade-in'}>
