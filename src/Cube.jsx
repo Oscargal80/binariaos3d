@@ -28,10 +28,10 @@ const Face = ({ position, rotation, onClick, animate, text }) => {
         thickness={0.5} // Adjust thickness to give a glass-like feel
         envMapIntensity={1} // Enhance reflections
       />
-      <Edges color="white" />
+      <Edges color="black" />
       <Text
         position={[0, 0, 0.1]}
-        fontSize={0.2}
+        fontSize={0.3}
         color="white"
         font="/jetbrains-mono.woff"
         anchorX="center"
@@ -98,11 +98,13 @@ export default function Cube() {
     <>
       <div className="canvas-container">
         <Canvas style={{ width: '100%', height: 'calc(100vh - 100px)' }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[5, 5, 5]} intensity={1} color="white" />
-          <pointLight position={[10, 10, 10]} intensity={1} distance={20} decay={2} />
-          <pointLight position={[-10, -10, -10]} intensity={1} distance={20} decay={2} color="blue" />
-          <pointLight position={[0, 5, 0]} intensity={0.5} color="red" />
+          <ambientLight intensity={0.7} color="white" />
+          <directionalLight position={[5, 5, 5]} intensity={1.5} color="white" />
+          <pointLight position={[10, 10, 10]} intensity={2} distance={30} decay={2} color="white" />
+          <pointLight position={[-10, -10, -10]} intensity={2} distance={30} decay={2} color="white" />
+          <pointLight position={[0, 5, 0]} intensity={2} color="white" />
+          <spotLight position={[15, 20, 5]} angle={0.3} intensity={2} castShadow />
+          <spotLight position={[-15, -20, -5]} angle={0.3} intensity={2} castShadow color="white" />
           <RotatingCube />
         </Canvas>
       </div>
