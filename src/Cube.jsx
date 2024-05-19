@@ -105,7 +105,7 @@ function RotatingCube() {
   ];
 
   return (
-    <group ref={mesh} scale={[1.1, 1.1, 1.1]}>
+    <group ref={mesh} scale={[1.2, 1.2, 1.2]}>
       {faces.map((face, index) => (
         <Face
           key={index}
@@ -117,6 +117,10 @@ function RotatingCube() {
           transparent={transparent}
         />
       ))}
+      <mesh>
+        <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial color="white" emissive="black" emissiveIntensity={1} />
+      </mesh>
     </group>
   );
 }
