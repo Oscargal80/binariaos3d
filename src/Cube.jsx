@@ -105,7 +105,7 @@ function RotatingCube() {
       ))}
       <mesh>
         <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial color="red" emissive="red" emissiveIntensity={1.5} />
+        <meshStandardMaterial color="white" emissive="black" emissiveIntensity={1} />
       </mesh>
     </group>
   );
