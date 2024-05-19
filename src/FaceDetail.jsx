@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './App.css';
 
 const FaceDetail = () => {
@@ -11,9 +10,10 @@ const FaceDetail = () => {
 
   useEffect(() => {
     if (text === 'Proyectos') {
-      axios.get('/api/ipinfo')
-        .then(response => {
-          setIpInfo(response.data);
+      fetch('/ipinfo.php')
+        .then(response => response.json())
+        .then(data => {
+          setIpInfo(data);
         })
         .catch(error => console.error('Error fetching IP details:', error));
     }
