@@ -24,6 +24,9 @@ const Face = ({ position, rotation, onClick, animate, text }) => {
         reflectivity={1}
         clearcoat={1}
         clearcoatRoughness={0}
+        transmission={1} // Adding transparency
+        thickness={0.5} // Adjust thickness to give a glass-like feel
+        envMapIntensity={1} // Enhance reflections
       />
       <Edges color="white" />
       <Text
@@ -98,6 +101,8 @@ export default function Cube() {
           <ambientLight intensity={0.5} />
           <directionalLight position={[5, 5, 5]} intensity={1} color="white" />
           <pointLight position={[10, 10, 10]} intensity={1} distance={20} decay={2} />
+          <pointLight position={[-10, -10, -10]} intensity={1} distance={20} decay={2} color="blue" />
+          <pointLight position={[0, 5, 0]} intensity={0.5} color="red" />
           <RotatingCube />
         </Canvas>
       </div>

@@ -131,3 +131,6 @@ footer {
   text-align: center;
   padding: 0.5em 0;
 }
+.canvas-container {
+  width: 100vw;
+}
