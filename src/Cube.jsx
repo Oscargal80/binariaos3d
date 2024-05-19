@@ -137,7 +137,7 @@ export default function Cube() {
   return (
     <>
       <div className="canvas-container">
-        <Canvas style={{ width: '100%', height: 'calc(100vh - 150px)' }}>
+        <Canvas style={{ width: '100%', height: 'calc(100vh - 100px)' }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[5, 5, 5]} intensity={1} color="white" />
           <pointLight position={[10, 10, 10]} intensity={1} distance={20} decay={2} />
