@@ -6,6 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import '@fontsource/jetbrains-mono';
 import Footer from './Footer';
 
+// Importar los sonidos
+import soundAcerca from '../public/audio/acerca.mp3';
+import soundClientes from '../public/audio/clientes.mp3';
+import soundContactos from '../public/audio/contactos.mp3';
+import soundTrabajos from '../public/audio/trabajos.mp3';
+import soundProyectos from '../public/audio/proyectos.mp3';
+import soundTienda from '../public/audio/tienda.mp3';
+
 const Face = ({ position, rotation, onClick, animate, text, transparent }) => {
   const { pos, scale, rot, opacity } = useSpring({
     pos: animate ? [0, 0, 1.5] : position,
@@ -53,11 +61,25 @@ function RotatingCube() {
   const [transparent, setTransparent] = useState(false);
   const navigate = useNavigate();
 
+  // Crear una referencia de audio para cada sonido
+  const audioRefs = useRef([
+    new Audio(soundAcerca),    // Acerca
+    new Audio(soundTienda),    // Tienda
+    new Audio(soundTrabajos),  // Trabajos
+    new Audio(soundClientes),  // Clientes
+    new Audio(soundProyectos), // Proyectos
+    new Audio(soundContactos), // Contactos
+  ]);
+
   const handleClick = (index) => {
     const newAnimate = Array(6).fill(false);
     newAnimate[index] = true;
     setAnimate(newAnimate);
     setIsAnimating(true);
+
+    // Reproducir el sonido correspondiente
+    audioRefs.current[index].play();
+
     setTimeout(() => {
       navigate(`/face/${faces[index].text}`);
       setAnimate(Array(6).fill(false));
@@ -83,11 +105,11 @@ function RotatingCube() {
 
   const faces = [
     { position: [0, 0, 1], rotation: [0, 0, 0], text: "Acerca" },
-    { position: [0, 0, -1], rotation: [0, Math.PI, 0], text: "BinOS" },
+    { position: [1, 0, 0], rotation: [0, Math.PI / 2, 0], text: "Tienda" },
     { position: [0, 1, 0], rotation: [-Math.PI / 2, 0, 0], text: "Trabajos" },
     { position: [0, -1, 0], rotation: [Math.PI / 2, 0, 0], text: "Clientes" },
-    { position: [1, 0, 0], rotation: [0, Math.PI / 2, 0], text: "e-Comm" },
-    { position: [-1, 0, 0], rotation: [0, -Math.PI / 2, 0], text: "Contactos" },
+    { position: [-1, 0, 0], rotation: [0, -Math.PI / 2, 0], text: "Proyectos" },
+    { position: [0, 0, -1], rotation: [0, Math.PI, 0], text: "Contactos" },
   ];
 
   return (
