@@ -13,15 +13,12 @@ import soundFondo from '../public/audio/modern.mp3';
 function App() {
   const [count, setCount] = useState(0);
   const fondoAudioRef = useRef(null);
+  const bienvenidoAudioRef = useRef(null);
+  const [isWelcomePlayed, setIsWelcomePlayed] = useState(false);
 
   useEffect(() => {
-    // Reproducir sonido de bienvenida al cargar el sitio después de un retraso de 3 segundos
-    const bienvenidoAudio = new Audio(soundBienvenido);
-    const bienvenidoTimeout = setTimeout(() => {
-      bienvenidoAudio.play().catch(error => {
-        console.log('Error al reproducir sonido de bienvenida:', error);
-      });
-    }, 3000);
+    // Inicializar sonido de bienvenida
+    bienvenidoAudioRef.current = new Audio(soundBienvenido);
 
     // Inicializar sonido de fondo con volumen bajo
     fondoAudioRef.current = new Audio(soundFondo);
@@ -30,13 +27,21 @@ function App() {
 
     return () => {
       // Limpiar los audios al desmontar el componente
-      clearTimeout(bienvenidoTimeout);
-      bienvenidoAudio.pause();
-      bienvenidoAudio.currentTime = 0;
+      bienvenidoAudioRef.current.pause();
+      bienvenidoAudioRef.current.currentTime = 0;
       fondoAudioRef.current.pause();
       fondoAudioRef.current.currentTime = 0;
     };
   }, []);
+
+  const playWelcomeAudio = () => {
+    if (!isWelcomePlayed) {
+      bienvenidoAudioRef.current.play().catch(error => {
+        console.log('Error al reproducir sonido de bienvenida:', error);
+      });
+      setIsWelcomePlayed(true);
+    }
+  };
 
   const toggleFondoAudio = () => {
     if (fondoAudioRef.current.paused) {
@@ -52,7 +57,7 @@ function App() {
     <Router>
       <div className="app-container">
         <header className="header">
-          <Link to="/">
+          <Link to="/" onClick={playWelcomeAudio}>
             <img src={binariaLogo} alt="BinariaOS" className="binaria-logo" /> {/* Aplicar la clase CSS */}
           </Link>
         </header>
