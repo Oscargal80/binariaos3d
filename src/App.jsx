@@ -15,18 +15,25 @@ function App() {
   const fondoAudioRef = useRef(null);
 
   useEffect(() => {
-    // Reproducir sonido de bienvenida al cargar el sitio
+    // Reproducir sonido de bienvenida al cargar el sitio después de un retraso de 3 segundos
     const bienvenidoAudio = new Audio(soundBienvenido);
-    bienvenidoAudio.play();
+    const bienvenidoTimeout = setTimeout(() => {
+      bienvenidoAudio.play().catch(error => {
+        console.log('Error al reproducir sonido de bienvenida:', error);
+      });
+    }, 3000);
 
     // Reproducir sonido de fondo con volumen bajo
     fondoAudioRef.current = new Audio(soundFondo);
     fondoAudioRef.current.volume = 0.1; // Ajusta el volumen aquí
     fondoAudioRef.current.loop = true; // Hace que el audio se repita
-    fondoAudioRef.current.play();
+    fondoAudioRef.current.play().catch(error => {
+      console.log('Error al reproducir sonido de fondo:', error);
+    });
 
     return () => {
       // Limpiar los audios al desmontar el componente
+      clearTimeout(bienvenidoTimeout);
       bienvenidoAudio.pause();
       bienvenidoAudio.currentTime = 0;
       fondoAudioRef.current.pause();
