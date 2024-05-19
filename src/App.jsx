@@ -5,6 +5,7 @@ import Cube from './Cube';
 import FaceDetail from './FaceDetail';
 import binariaLogo from './assets/BINARIA.png';
 import Footer from './Footer'; // Importa el componente Footer
+import Loader from './Loader'; // Importa el componente Loader
 
 // Importa los sonidos
 import soundBienvenido from '../public/audio/bienvenido.mp3';
@@ -15,8 +16,14 @@ function App() {
   const fondoAudioRef = useRef(null);
   const bienvenidoAudioRef = useRef(null);
   const [isWelcomePlayed, setIsWelcomePlayed] = useState(false);
+  const [loading, setLoading] = useState(true); // Estado para la pantalla de carga
 
   useEffect(() => {
+    // Simula la carga de recursos
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Cambia esto según el tiempo que necesites para cargar los datos
+
     // Inicializar sonido de bienvenida
     bienvenidoAudioRef.current = new Audio(soundBienvenido);
 
@@ -52,6 +59,10 @@ function App() {
       fondoAudioRef.current.pause();
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <Router>
