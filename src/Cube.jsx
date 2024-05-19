@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Edges, Text } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
 import { useNavigate } from 'react-router-dom';
-import { Physics } from '@react-three/cannon';
+import { Physics, useBox } from '@react-three/cannon';
 import '@fontsource/jetbrains-mono';
 
 // Importar los sonidos
@@ -14,7 +14,7 @@ import soundTrabajos from '../public/audio/trabajos.mp3';
 import soundProyectos from '../public/audio/proyectos.mp3';
 import soundTienda from '../public/audio/tienda.mp3';
 
-const Face = ({ position, rotation, onPointerDown, onPointerUp, onPointerMove, onMouseDown, onMouseUp, onMouseMove, animate, text, transparent }) => {
+const Face = ({ position, rotation, onClick, animate, text, transparent }) => {
   const { pos, scale, rot, opacity } = useSpring({
     pos: animate ? [0, 0, 1.5] : position,
     scale: animate ? [5, 5, 5] : [1, 1, 1],
@@ -24,19 +24,13 @@ const Face = ({ position, rotation, onPointerDown, onPointerUp, onPointerMove, o
   });
 
   return (
-    <a.mesh
-      position={pos}
-      rotation={rot}
-      scale={scale}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onPointerMove={onPointerMove}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onMouseMove={onMouseMove}
-    >
+    <a.mesh position={pos} rotation={rot} scale={scale} onClick={onClick}>
       <planeGeometry args={[2, 2]} />
-      <a.meshBasicMaterial color="white" opacity={opacity} transparent={true} />
+      <a.meshBasicMaterial
+        color="white"
+        opacity={opacity}
+        transparent={true}
+      />
       <Edges color="black" />
       <Text
         position={[0, 0, 0.1]}
@@ -58,9 +52,6 @@ function RotatingCube() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [transparent, setTransparent] = useState(false);
   const navigate = useNavigate();
-
-  const [isDragging, setIsDragging] = useState(false);
-  const [lastPointerPosition, setLastPointerPosition] = useState({ x: 0, y: 0 });
 
   // Crear una referencia de audio para cada sonido
   const audioRefs = useRef([
@@ -88,37 +79,6 @@ function RotatingCube() {
     }, 2000);
   };
 
-  const handlePointerDown = (e) => {
-    setIsDragging(true);
-    setLastPointerPosition({ x: e.clientX, y: e.clientY });
-  };
-
-  const handlePointerUp = () => {
-    setIsDragging(false);
-  };
-
-  const handlePointerMove = (e) => {
-    if (isDragging) {
-      const deltaX = e.clientX - lastPointerPosition.x;
-      const deltaY = e.clientY - lastPointerPosition.y;
-      mesh.current.rotation.y += deltaX * 0.01;
-      mesh.current.rotation.x += deltaY * 0.01;
-      setLastPointerPosition({ x: e.clientX, y: e.clientY });
-    }
-  };
-
-  const handleMouseDown = (e) => {
-    handlePointerDown(e);
-  };
-
-  const handleMouseUp = (e) => {
-    handlePointerUp(e);
-  };
-
-  const handleMouseMove = (e) => {
-    handlePointerMove(e);
-  };
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTransparent(true);
@@ -129,7 +89,7 @@ function RotatingCube() {
   }, []);
 
   useFrame(() => {
-    if (!isAnimating && !isDragging) {
+    if (!isAnimating) {
       mesh.current.rotation.x += 0.005;
       mesh.current.rotation.y += 0.005;
     }
@@ -145,18 +105,12 @@ function RotatingCube() {
   ];
 
   return (
-    <group ref={mesh} scale={[1.2, 1.2, 1.2]}>
+    <group ref={mesh} scale={[1.3, 1.3, 1.3]}>
       {faces.map((face, index) => (
         <Face
           key={index}
           position={face.position}
           rotation={face.rotation}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
-          onPointerMove={handlePointerMove}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
           onClick={() => handleClick(index)}
           animate={animate[index]}
           text={face.text}
