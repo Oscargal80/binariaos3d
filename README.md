@@ -1,8 +1,23 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# BinariaOS React + ThreeJs
 
-Currently, two official plugins are available:
+Sitio creado con react app usando librerias three js para renderizacion 3d
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Authors
+
+- [@Oscargal80](https://www.github.com/oscargal80)
+
+
+## Demo
+
+Página demo
+https://binariaos.com.py
+
+Netlify deploy
+https://binariaos3d.netlify.app
+
+
+    BinOS@2024
+![Logo](https://binariaos.com.py/bin3d/images/LogoBinaria23.png)
+
