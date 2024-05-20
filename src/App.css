@@ -281,7 +281,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo más suave */
+  background-color: rgba(255, 255, 255, 1); /* Fondo más suave */
   z-index: 9999;
   transition: opacity 1s ease-out, visibility 1s ease-out; /* Transición para el desvanecimiento */
   opacity: 1;
